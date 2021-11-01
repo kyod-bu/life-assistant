@@ -6,6 +6,7 @@ import moment from 'moment';
 import 'moment/locale/zh-cn';
 // import './App.css';
 import './App.less';
+import ChartsDemo from './charts/ChartsDemo';
 
 moment.locale('zh-cn');
 
@@ -24,6 +25,9 @@ const App = () => {
                     <Alert message="当前日期" description={date ? date.format('YYYY年MM月DD日') : '未选择'} />
                 </div>
             </div>
+            <ChartsDemo series={[]} />
+            <ChartsDemo series={[{name: '图2', data: [10, 3, 90]}]} />
+            {/* <div id="container" style={{ width: 600, height: 400 }}>Highcharts 图表</div> */}
         </ConfigProvider>
     );
 };
