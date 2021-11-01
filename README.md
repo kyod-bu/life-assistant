@@ -59,7 +59,52 @@ Highcharts 系列软件支持多种数据形式，可以是 Javascript 数组、
 
 ###### 方法一：使用 `React.createRef()`
 
+```jsx
+componentDidMount() {
+    this.chartRef = React.createRef();
+}
+
+render() {
+    return (
+        <HighchartsReact
+            highcharts={ Highcharts }
+            options={ options }
+            ref={ this.chartRef }
+        />
+    );
+}
+```
+
 ###### 方法二：使用回调函数存储
+
+```jsx
+constructor(props) {
+    super(props);
+    this.afterChartCreated = this.afterChartCreated.bind(this);
+}
+
+afterChartCreated(chart) {
+    this.internalChart = chart;
+}
+
+componentDidMount() {
+    // 使用示例
+    this.internalChart.addSeries({ data: [1, 2, 3] })
+}
+
+render() {
+    return (
+        <div>
+            <h2>Highcharts</h2>
+            <HighchartsReact
+                highcharts={ Highcharts }
+                options={ options }
+                callback={ this.afterChartCreated }
+            />
+        </div>
+    );
+}
+```
 
 ##### 2、如何添加其他模块？
 
