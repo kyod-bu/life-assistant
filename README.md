@@ -17,7 +17,27 @@ cd life-assistant
 yarn start
 ```
 
-### Mobx
+### Mobx 状态管理
+
+```bash
+# 引入 mobx
+yarn add mobx mobx-react
+
+# 支持装饰器写法
+yarn add @babel/plugin-proposal-decorators
+```
+
+在 carco.config.js 里面添加:
+
+```js
+babel: { // 用来支持装饰器
+  plugins: [
+    ["@babel/plugin-proposal-decorators", { legacy: true }]
+  ]
+},
+```
+
+### Router 路由
 
 ### AntD
 
@@ -127,4 +147,3 @@ demo
 ```bash
 yarn add lodash
 ```
-
