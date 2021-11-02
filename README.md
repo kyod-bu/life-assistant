@@ -21,7 +21,9 @@ yarn start
 
 ```bash
 # 引入 mobx
-yarn add mobx mobx-react
+yarn add mobx
+# yarn add mobx-react 我们使用轻量级的 mobx-react-lite 替换此方案
+yarn add mobx-react-lite
 
 # 支持装饰器写法
 yarn add @babel/plugin-proposal-decorators
@@ -37,7 +39,22 @@ babel: { // 用来支持装饰器
 },
 ```
 
+⚠️ mobx 的使用
+
+```js
+import { action, computed, makeObservable, observable, autorun, IReactionDisposer, reaction, toJS } from 'mobx';
+
+import { observer } from 'mobx-react-lite';
+```
+
+#### `mobx` + `mobx-react` *VS* `mobx-react-lite` + `Context API`
+
 ### Router 路由
+
+```bash
+# 引入 router
+yarn add react-router-dom
+```
 
 ### AntD
 

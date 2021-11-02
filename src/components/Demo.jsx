@@ -1,23 +1,17 @@
-import React, { useState } from 'react';
-import { ConfigProvider, DatePicker, message, Button, Alert } from 'antd';
-// 由于 antd 组件的默认文案是英文，所以需要修改为中文
-import zhCN from 'antd/lib/locale/zh_CN';
-import moment from 'moment';
-import 'moment/locale/zh-cn';
-// import './App.css';
-import './App.less';
-import ChartsDemo from './charts/ChartsDemo';
+import { useState } from 'react';
 
-moment.locale('zh-cn');
+import { DatePicker, message, Button, Alert } from 'antd';
 
-const App = () => {
+import ChartsDemo from '../charts/ChartsDemo';
+
+const Demo = () => {
     const [date, setDate] = useState(null);
     const handleChange = value => {
         message.info(`您选择的日期是：${value ? value.format('YYYY年MM月DD日') : '未选择'}`);
         setDate(value);
     };
     return (
-        <ConfigProvider locale={zhCN}>
+        <div>
             <div style={{ width: 400, margin: '100px auto' }}>
                 <Button type="primary">按钮</Button>
                 <DatePicker onChange={handleChange} />
@@ -28,8 +22,8 @@ const App = () => {
             <ChartsDemo series={[]} />
             <ChartsDemo series={[{name: '图2', data: [10, 3, 90]}]} />
             {/* <div id="container" style={{ width: 600, height: 400 }}>Highcharts 图表</div> */}
-        </ConfigProvider>
+        </div>
     );
 };
 
-export default App;
+export default Demo;
