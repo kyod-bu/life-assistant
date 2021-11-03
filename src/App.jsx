@@ -1,37 +1,22 @@
-import { useContext, useState, useEffect } from 'react';
-import { observer } from 'mobx-react-lite';
-import { Switch, Route, useHistory } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
+import { ConfigProvider } from 'antd';
 
-import Demo from './components/Demo';
+// 由于 antd 组件的默认文案是英文，所以需要修改为中文
+import zhCN from 'antd/lib/locale/zh_CN';
+import moment from 'moment';
+import 'moment/locale/zh-cn';
 
-const AuthCallBack = () => <h1>AuthCallBack</h1>;
-const Login = () => <h1>Login</h1>;
-const Logout = () => <h1>Logout</h1>;
-const Router = () => <h1>Router</h1>
+import './App.less';
+import './index.css';
 
-// 账号校验
-// 第一次打开网页
-export default observer(() => {
-    // const {} = useContext();
-    // const root = useContext(null);
+moment.locale('zh-cn');
 
-    //
+export default function App() {
     return (
-        <Switch>
-            {/* <Route path={login} exact><Login /></Route>
-            <Route path={logout} exact><Logout /></Route>
-            <Route path={callback} exact><AuthCallBack /></Route> */}
-
-            <Route path="/v2"><Router /></Route>
-            <Route path="/"><BackV1 /></Route>
-        </Switch>
+        <BrowserRouter>
+            <ConfigProvider locale={zhCN}>
+                <h1>hello</h1>
+            </ConfigProvider>
+        </BrowserRouter>
     );
-});
-
-const BackV1 = () => {
-    // useEffect(() => {
-    //     globalThis.location.reload();
-    // }, []);
-    // return null;
-    return <h1>hello</h1>;
-};
+}

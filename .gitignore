@@ -32,3 +32,5 @@ yarn.lock
 
 # create-react-app 初始化项目，删除部分
 delete_init/
+demo/
+App2.css

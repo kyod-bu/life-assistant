@@ -22,7 +22,7 @@ yarn start
 ```bash
 # 引入 mobx
 yarn add mobx
-# yarn add mobx-react 我们使用轻量级的 mobx-react-lite 替换此方案
+# yarn add mobx-react 我们使用轻量级的 mobx-react-lite
 yarn add mobx-react-lite
 
 # 支持装饰器写法
@@ -47,7 +47,7 @@ import { action, computed, makeObservable, observable, autorun, IReactionDispose
 import { observer } from 'mobx-react-lite';
 ```
 
-#### `mobx` + `mobx-react` *VS* `mobx-react-lite` + `Context API`
+#### 👍`mobx-react-lite` + `Context API`
 
 ### Router 路由
 
@@ -158,6 +158,13 @@ HighchartsNoData(Highcharts);
 ------通过使用 Portals（传送门），可以向每个 HTML 图表元素添加组件。
 
 #### 替代方案 `@ant-design/charts`
+
+```bash
+# 安装 @ant-design/charts
+yarn add @ant-design/charts
+```
+
+
 
 demo
 
