@@ -1,8 +1,7 @@
 /**
  * 对应用状态进行建模 Store
  */
-// import { action, autorun, computed, makeObservable, observable } from 'mobx';
-const { action, autorun, computed, makeObservable, observable } = require('mobx');
+import { action, autorun, computed, makeObservable, observable } from 'mobx';
 
 class ObservableTodoStore {
     todos = [];
