@@ -35,6 +35,7 @@
     "xss": "^1.0.10"
   },
   "scripts": {
+    "start": "craco start",
     "start:demo": "craco start --config craco.config.demo.js",
     "build:demo": "craco build --config craco.config.demo.js",
     "test": "craco test"

@@ -239,3 +239,5 @@ const MyComponent = ({ person, car }) => (
 这种方式允许 `GenericNameDisplayer` 渲染任何名称的组件，你依然可以保持组件渲染在最低的限度。
 
 ## 路由管理 Router
+
+## 整合项目架构

@@ -1,32 +1,14 @@
-import '@app/less/index.less';
+/**
+ * 在 create-react-app 中使用 `antd`
+ */
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
 
-// config
-export { DF_API_CODE, DF_API_FORMAT, getApiCode, getApiDataFormat } from '@app/config/api';
-export { default as AppConfigContext, DF_CONFIG, AppConfigProvide, AppConfigConsumer } from '@/config/index';
-
-// rootStore
-export { default as AppRootContext, AppRootStore, AppRootConsumer, AppRootProvider } from './store/root';
-
-// tools
-
-// hooks
-
-// in
-
-// out
-
-// form
-
-// table
-
-// desc
-
-// charts
-
-// page
-
-// layout
-
-// route
-
-// remote
+ReactDOM.render(
+    <React.StrictMode>
+        <App />
+    </React.StrictMode>,
+    document.getElementById("root")
+);
