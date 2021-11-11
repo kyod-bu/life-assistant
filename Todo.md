@@ -240,4 +240,234 @@ const MyComponent = ({ person, car }) => (
 
 ## 路由管理 Router
 
+在 Web 应用中开始使用 React Router
+
+```shell
+# 引入 router
+yarn add react-router-dom
+```
+
+### 基本使用
+
+```jsx
+/**
+ * 在 create-react-app 中使用 `react-router-dom`
+ */
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+
+const App = () => {
+    return (
+        <Router>
+            <div>
+                <nav>
+                    <ul>
+                        <li><Link to="/" />Home</li>
+                        <li><Link to="/about" />About</li>
+                        <li><Link to="/users" />Users</li>
+                    </ul>
+                </nav>
+
+                {/* 通过 Switch 查看它的子路由 Route，并渲染出 与当前 URL 匹配的第一个子路由 */}
+                <Switch>
+                    <Route path="/about"><About /></Route>
+                    <Route path="/users"><Users /></Route>
+                    <Route path="/"><Home /></Route>
+                </Switch>
+            </div>
+        </Router>
+    )
+};
+
+const Home = () => <h2>Home</h2>;
+const About = () => <h2>About</h2>;
+const Users = () => <h2>Users</h2>;
+
+export default App;
+```
+
+### 基本使用2：嵌套路由
+
+重点关注：Topics
+
+```jsx
+import { BrowserRouter as Router, Switch, Route, Link, useRouteMatch, useParams } from 'react-router-dom';
+
+const App = () => {
+    return (
+        <Router>
+            <div>
+                <nav>
+                    <ul>
+                        <li><Link to="/">Home</Link></li>
+                        <li><Link to="/about">About</Link></li>
+                        <li><Link to="/users">Users</Link></li>
+                        <li><Link to="/topics">Topics</Link></li>
+                    </ul>
+                </nav>
+
+                {/* 通过 Switch 查看它的子路由 Route，并渲染出 与当前 URL 匹配的第一个子路由 */}
+                <Switch>
+                    <Route path="/about"><About /></Route>
+                    <Route path="/users"><Users /></Route>
+                    <Route path="/topics"><Topics /></Route>
+                    <Route path="/"><Home /></Route>
+                </Switch>
+            </div>
+        </Router>
+    )
+};
+
+const Home = () => <h2>Home</h2>;
+const About = () => <h2>About</h2>;
+const Users = () => <h2>Users</h2>;
+
+// 嵌套路由
+const Topics = () => {
+    let match = useRouteMatch();
+
+    return (
+        <div>
+            <h2>Topics</h2>
+            <ul>
+                <li>
+                    <Link to={`${match.url}/components`}>Components</Link>
+                </li>
+                <li>
+                    <Link to={`${match.url}/props-v-state`}>Props vs State</Link>
+                </li>
+            </ul>
+
+            {/* Topics 页面有自己的 Switch 和 建立在 /topics URL 路径上的更多的路由。
+            你可以想到第二个 Route 在这里作为所有 topics 的“index”页面，或 未选择 topic 时显示的页面 */}
+            <Switch>
+                <Route path={`${match.path}/:topicId`}>
+                    <Topic />
+                </Route>
+                <Route path={match.path}>
+                    <h3>请选择一个 topic.</h3>
+                </Route>
+            </Switch>
+        </div>
+    );
+};
+
+const Topic = () => {
+    let { topicId } = useParams();
+    return <h3>Request topic ID: {topicId}</h3>;
+};
+
+export default App;
+```
+
+### 主要组件
+
+React Router 中的组件主要分为三类：
+
+```jsx
+import { 
+  BrowserRouter, HashRouter, // 路由器组件
+  Switch, Route, // 路由匹配器组件
+  Link, NavLink, Redirect // 导航组件，也可叫做 路由变更器组件
+} from 'react-router-dom';
+```
+
+#### 路由器： `BrowserRouter`  *VS*  `HashRouter`
+
+主要区别在于 它们存储 URL 以及与您的 Web 服务器通信方式。
+
+* `<BrowserRouter>` 使用常规 URL 路径。这些通常是最好看的 URL，但他们需要正确配置您的服务器。
+* `<HashRouter>` 将当前位置存储在 URL 的 hash 部分中，因此 URL 看起来像 <http://example.com/#/your/page> .由于哈希从未发送到服务器，这意味着不需要特殊的服务器配置。
+
+要使用路由器，只需确保它在元素层次结构的根部呈现。通常，您会将顶级 `<App>` 元素包裹在路由器中，举个🌰
+
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
+
+const App = () => {
+    return <h1>Hello React Router</h1>;
+};
+
+ReactDOM.render(
+    <React.StrictMode>
+    		<BrowserRouter>
+           	<App />
+    		</BrowserRouter>
+    </React.StrictMode>,
+    document.getElementById("root")
+);
+```
+
+#### 路由匹配器：`Switch` & `Route`
+
+当一个 `<Switch>` 被渲染时，他会搜索他的 子元素 `<Route>` ，以找到 path 与当前 URL 匹配的元素。当他找到一个时，他会渲染他 `<Route>` 并忽略其他的。这意味着您应该将 子元素 `<Route>` 中，具有更具体（通常更长）的 path 放在不太具体的之前。
+
+如果没有 `<Route>` 匹配项，则不 `<Switch>` 呈现任何内容 `null`。
+
+```jsx
+<Switch>
+    {/* 如果当前 URL 为 `/about`，则渲染此路由，其余的被忽略 */}
+    <Route path="/about"><About /></Route>
+  
+    {/* 请注意这两条路由是已经排序的。 
+        更具体的 path="/contact/:id" 出现在 path="/contact" 之前，导致 查看单个联系人时将呈现路由 */}
+    <Route path="/contact/:id"><Contact /></Route>
+    <Route path="/contact"><AllContacts /></Route>
+  
+    {/* 如果之前的路由都没有渲染任何东西，这条路由充当 fallback
+        ⚠️ 重要提示：带有 path="/" 的路由将 `始终` 匹配 URL，因为所有 URL 都以 "/" 开头。 所以我们把这个放在最后 */}
+    <Route path="/"><Home /></Route>
+</Switch>
+```
+
+⚠️ 注意：`<Route path>` 匹配 URL 的**开头**，而不是整个内容。所以 `<Route path="/">` 将**始终**匹配 URL 。正因如此，我们通常把 `<Route path="/">` 放在 `<Switch>` 的最后面。***另一种*** 可能的解决方案是使用 `<Route exact path="/">` 它确实匹配完整的 URL。
+
+⚠️ 注：虽然 React Router 不支持渲染 `Switch` 元素外的 `<Route>` ，作为 5.1 版本，我们推荐使用 `useRouteMatch` 来代替。此外，不建议使用不带参数 path 的 `<Route>` ，而是建议您使用 hooks 来访问您需要的任何变量。
+
+#### 导航 or 路由变更器：`Link` & `NavLink` & `Redirect`
+
+React Router 提供了一个 `<Link>` 组件，在您的应用程序中创建链接。无论在何处渲染 `<Link>` , 一个锚点 `<a>` 都将在您的 html 文档中被渲染。
+
+```jsx
+<Link to="/">Home</Link>
+// <a href="/">Home</a>
+```
+
+`<NavLink>` 是一种特殊类型的 `<Link>` 组件，当他的 `to` 参数与当前的 location 匹配时，他可以将自己设置为 `active` .
+
+```jsx
+<NavLink to="/react" activeClassName="hurray">
+  React
+</NavLink>
+
+// 当 URL 是 `/react` 时，则渲染：
+// <a href="/react" className="hurray">React</a>
+
+// 否则，渲染：
+// <a href="/react">React</a>
+```
+
+任何时候你想强制导航，你可以渲染一个 `<Redirect>` 。当 `<Redirect>` 渲染时，将使用他的 `to` 参数进行导航。
+
+```jsx
+<Redirect to="/login" />
+```
+
+### 服务器渲染
+
+服务器上的渲染有点不同，因为它都是无状态的。基本思想是：将应用包装在无状态 `<StaticRouter>` 而不是 `<BrowserRouter>`. 我们从服务器传入请求的 URL，以便路由可以配置，并且 `context` props 将会被使用。
+
+### 代码拆分
+
+### 卷轴修复
+
+### 哲学
+
+### 测试
+
+### 深度 Redux 集成
+
+### 静态路由
+
 ## 整合项目架构
