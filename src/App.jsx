@@ -9,11 +9,19 @@ import zhCN from 'antd/lib/locale/zh_CN';
 import moment from 'moment';
 import './styles/App.css';
 
+// import {
+//     BrowserRouter, Router,
+//     Switch, Route,
+//     Link, Redirect,
+//     useHistory, useLocation
+// } from 'react-router-dom';
+
 import {
     BrowserRouter as Router,
     Switch,
     Route,
     Link,
+    // Redirect,
     useRouteMatch,
     useParams
 } from 'react-router-dom';
@@ -45,7 +53,12 @@ const App = () => {
     )
 };
 
-const Home = () => <h2>Home</h2>;
+const Home = () => (
+    <div>
+        <h2>Home</h2>
+        <App2 />
+    </div>
+);
 const About = () => <h2>About</h2>;
 const Users = () => <h2>Users</h2>;
 
