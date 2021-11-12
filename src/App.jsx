@@ -1,46 +1,33 @@
-/**
- * 在 create-react-app 中使用 `antd`
- * 在 create-react-app 中使用 `react-router-dom`
- */
-import { useState } from 'react';
-import { ConfigProvider, DatePicker, message, Button, version, Alert } from 'antd';
+import { ConfigProvider } from 'antd';
 // 由于 antd 组件的默认文案是英文，所以需要修改为中文
 import zhCN from 'antd/lib/locale/zh_CN';
-import moment from 'moment';
-import './styles/App.css';
-
-// import {
-//     BrowserRouter, Router,
-//     Switch, Route,
-//     Link, Redirect,
-//     useHistory, useLocation
-// } from 'react-router-dom';
-
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
+// React Router
+import { BrowserRouter, Switch, Route, Link,
     // Redirect,
-    useRouteMatch,
-    useParams
+    useRouteMatch, useParams,
+    // useHistory,
+    // useLocation
 } from 'react-router-dom';
 
-moment.locale('zh-cn');
+import AppPage from './AppPage';
+import './styles/App.css';
 
-const App = () => {
+const NavComponent = () => (
+    <nav>
+        <ul>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/about">About</Link></li>
+            <li><Link to="/users">Users</Link></li>
+            <li><Link to="/topics">Topics</Link></li>
+        </ul>
+    </nav>
+);
+
+export default function App() {
     return (
-        <Router>
-            <div>
-                <nav>
-                    <ul>
-                        <li><Link to="/">Home</Link></li>
-                        <li><Link to="/about">About</Link></li>
-                        <li><Link to="/users">Users</Link></li>
-                        <li><Link to="/topics">Topics</Link></li>
-                    </ul>
-                </nav>
-
+        <ConfigProvider locale={zhCN}>
+            <BrowserRouter>
+                <NavComponent />
                 {/* 通过 Switch 查看它的子路由 Route，并渲染出 与当前 URL 匹配的第一个子路由 */}
                 <Switch>
                     <Route path="/about"><About /></Route>
@@ -48,15 +35,15 @@ const App = () => {
                     <Route path="/topics"><Topics /></Route>
                     <Route path="/"><Home /></Route>
                 </Switch>
-            </div>
-        </Router>
+            </BrowserRouter>
+        </ConfigProvider>
     )
 };
 
 const Home = () => (
     <div>
         <h2>Home</h2>
-        <App2 />
+        <AppPage />
     </div>
 );
 const About = () => <h2>About</h2>;
@@ -96,25 +83,3 @@ const Topic = () => {
     let { topicId } = useParams();
     return <h3>Request topic ID: {topicId}</h3>;
 };
-
-const App2 = () => {
-    const [date, setDate] = useState(null);
-
-    const handleChange = value => {
-        message.info(`您选择的日期是：${value ? value.format('YYYY年MM月DD日') : '未选择'}`);
-        setDate(value);
-    }
-    return (
-        <ConfigProvider locale={zhCN}>
-            <div className="App">
-                <h1>antd version: {version}</h1>
-                <p>您选择的日期是：{date ? date.format('YYYY年MM月DD日') : '未选择'}</p>
-                <DatePicker onChange={handleChange} />
-                <Button type="primary" style={{ marginLeft: 8 }}>Button</Button>
-                <Alert message="当前日期" description={date ? date.format('YYYY年MM月DD日') : '未选择'} />
-            </div>
-        </ConfigProvider>
-    )
-};
-
-export default App;
