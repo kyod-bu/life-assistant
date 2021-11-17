@@ -96,21 +96,21 @@ const MyComponent = observer(props => ReactElement);
    ```jsx
    import { observer } from 'mobx-react-lite';
    import { createContext, useContext } from 'react';
-
+   
    class Timer {
        secondsPassed = 0;
-
+   
        constructor() {
            makeAutoObservable(this);
        }
-
+   
        increaseTimer() {
            this.secondsPassed += 1;
        }
    }
-
+   
    const TimerContext = createContext();
-
+   
    const TimerView = observer(() => {
        // 从 context 中获取 timer
        const timer = useContext(TimerContext);
@@ -202,7 +202,7 @@ Mobx 非常快，通常比 Redux 更快。
 
 // 快的：
 <DisplayName person={person} />
-```
+   ```
 
 在这个快的示例中，改变 `name` 属性只会触发 `DisplayName` 重新渲染，在慢的示例中，组件的所有者也必须重新渲染。前者没有错，如果组件的拥有者渲染的足够快（通常是这样！），这种方式也能很好的运行。
 
@@ -856,7 +856,7 @@ const Invoices = () => (
 
 ❗️有效路由集，根据用户手中移动设备的动态特性而变化。
 
-## 遗留问题：
+## ❓遗留问题
 
 1. 整合项目架构
 2. 研究一下 React Router 和 Mobx 的集成
