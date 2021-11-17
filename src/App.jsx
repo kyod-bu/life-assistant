@@ -10,6 +10,7 @@ import { BrowserRouter, Switch, Route, Link,
 } from 'react-router-dom';
 
 import AppPage from './AppPage';
+import LayoutFull from './layout/full';
 import './styles/App.css';
 
 const NavComponent = () => (
@@ -41,10 +42,10 @@ export default function App() {
 };
 
 const Home = () => (
-    <div>
+    <LayoutFull>
         <h2>Home</h2>
         <AppPage />
-    </div>
+    </LayoutFull>
 );
 const About = () => (
     <div>
