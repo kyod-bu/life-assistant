@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { DF_API_CODE, DF_API_FORMAT } from '@app/config/api';
+import { DF_API_CODE, DF_API_FORMAT } from './api';
 
 export const DF_CONFIG = {
     apiDataFormat: DF_API_FORMAT,

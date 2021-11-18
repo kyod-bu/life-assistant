@@ -1,0 +1,23 @@
+.site-layout-content {
+    min-height: 100px;
+    padding: 24px;
+    background: #fff;
+}
+
+.logo {
+    float: left;
+    width: 120px;
+    height: 31px;
+    margin: 16px 24px 16px 0;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.logo2 {
+    height: 32px;
+    margin: 16px;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.site-layout .site-layout-backgroud {
+    background: #fff;
+}
