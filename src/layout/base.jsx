@@ -1,5 +1,9 @@
 /**
  * 典型的页面布局
+ * 1、上中下
+ * 2、顶部-侧边布局-通栏
+ * 3、顶部-侧边布局
+ * 4、侧边布局（也可借助 ProLayout 实现）
  */
 import { useState } from 'react'
 import { observer } from 'mobx-react-lite';
