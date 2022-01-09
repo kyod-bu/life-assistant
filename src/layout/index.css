@@ -8,14 +8,62 @@
     float: left;
     width: 120px;
     height: 31px;
-    margin: 16px 24px 16px 0;
-    background: rgba(255, 255, 255, 0.3);
+    /* margin: 16px 24px 16px 0; */
+    /* background-color: rgba(255, 255, 255, 0.3); */
+    /* background: url('./logo.png') no-repeat; */
+    /* background-size: auto 32px; */
 }
 
+/* ant-layout-sider ant-layout-sider-dark ant-layout-sider-has-trigger */
+/* ant-menu ant-menu-root ant-menu-vertical ant-menu-dark ant-menu-inline-collapsed */
+/* #components-layout-demo-side */
 .logo2 {
+    float: left;
     height: 32px;
     margin: 16px;
-    background: rgba(255, 255, 255, 0.3);
+    /* background-color: rgba(255, 255, 255, 0.3); */
+}
+
+/* .logo2 {
+    float: left;
+    height: 32px;
+    margin: 16px;
+} */
+
+.logo h1 {
+    display: inline-block;
+    margin: 0 0 0 12px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 18px;
+    vertical-align: middle;
+}
+
+.logo2 h1 {
+    display: inline-block;
+    margin: 0 0 0 12px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 18px;
+    vertical-align: middle;
+}
+
+.header-right {
+    float: right;
+}
+
+.header-right2 {
+    float: right;
+}
+
+.header-right-icon {
+    margin-right: 16px;
+    color: #fff;
+}
+
+.header-right-icon2 {
+    margin-right: 16px;
+    color: #1890ff;
 }
 
 .site-layout .site-layout-backgroud {
