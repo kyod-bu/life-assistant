@@ -8,7 +8,20 @@
 import { useState } from 'react'
 import { observer } from 'mobx-react-lite';
 import { Layout, Menu, Breadcrumb, Dropdown, Avatar, Badge } from 'antd';
-import { UserOutlined, LaptopOutlined, NotificationOutlined, DesktopOutlined, PieChartOutlined, FileOutlined, TeamOutlined, QuestionOutlined } from '@ant-design/icons';
+import {
+    UserOutlined,
+    LaptopOutlined,
+    NotificationOutlined,
+    DesktopOutlined,
+    PieChartOutlined,
+    FileOutlined,
+    TeamOutlined,
+    QuestionOutlined,
+    AreaChartOutlined,
+    DatabaseOutlined,
+    TableOutlined,
+    BulbOutlined,
+} from '@ant-design/icons';
 import './index.css';
 
 // import Header from './common/header';
@@ -27,7 +40,7 @@ const avatarDropdownMenu = (
 
 const CopyRight = (
     <span>
-        <span>Ant Design &copy;2018 Created by Ant UED</span><br />
+        {/* <span>Ant Design &copy;2018 Created by Ant UED</span><br /> */}
         <span>1998-{new Date().getFullYear()} by Tencent. All Rights Reserved.</span><br />
         <span>PCG技术运营部-业务安全中心-视频安全组 版权所有</span>
     </span>
@@ -39,24 +52,6 @@ const HeaderLogo = (
             <img src="/logo4.svg" alt="logo" height={32}></img>
             <h1>生活助手</h1>
         </a>
-    </div>
-);
-const HeaderLogo23 = (
-    <div className="logo2">
-        <a href="/">
-            <img src="/logo4.svg" alt="logo" height={32} />
-            <h1>生活助手</h1>
-        </a>
-    </div>
-);
-const HeaderLogo2 = (
-    <div id='components-layout-demo-side'>
-        <div className="logo2">
-            <a href="/">
-                <img src="/logo4.svg" alt="logo" height={32} />
-                <h1>生活助手</h1>
-            </a>
-        </div>
     </div>
 );
 
@@ -88,7 +83,7 @@ const HeaderRight2 = (
         </a>
         <span>
             <Dropdown overlay={avatarDropdownMenu}>
-                <Badge count={300} overflowCount={99} showZero>
+                <Badge count={Math.floor(Math.random()*100)} overflowCount={20} showZero>
                     <Avatar src="https://joeschmoe.io/api/v1/random" size="large" />
                 </Badge>
             </Dropdown>
@@ -115,21 +110,49 @@ const MenuComponent = (
     </Menu>
 );
 
+// const iconType = {
+//     dashboard: <AreaChartOutlined />,
+//     data: <DatabaseOutlined />, weibo: <WeiboOutlined />, offiaccount: <WechatOutlined />,
+//     report: <TableOutlined />,
+//     setting: <SettingOutlined />,
+//     tools: <ToolOutlined />,
+// };
+
 // 垂直菜单
 const MenuComponent2 = (
     <Menu
         theme="dark" // 顶部-侧边布局-通栏（不需要）
         mode="inline"
-        defaultSelectedKeys={['1']}
-        defaultOpenKeys={['sub1']}
+        defaultSelectedKeys={['dashboard']}
+        defaultOpenKeys={['data', 'report', 'baike']}
         style={{
             height: '100%',
-            // borderRight: 0 // 顶部-侧边布局-通栏（需要）
+            borderRight: 0 // 顶部-侧边布局-通栏（需要）
         }}
     >
+        <Menu.Item key="dashboard" icon={<AreaChartOutlined />}>运营面板</Menu.Item>
+        <SubMenu key="data" icon={<DatabaseOutlined />} title="黑产数据">
+            <Menu.Item key="data1">文件分析数据</Menu.Item>
+            <Menu.Item key="data2">U镜数据</Menu.Item>
+            <Menu.Item key="data3">群聊监控</Menu.Item>
+            <Menu.Item key="data4">论坛监控</Menu.Item>
+        </SubMenu>
+        <SubMenu key="report" icon={<TableOutlined />} title="数据报表">
+            <Menu.Item key="report1">热度集合</Menu.Item>
+            <Menu.Item key="report2">QQ相关数据</Menu.Item>
+            <Menu.Item key="report3">黑产地图</Menu.Item>
+            <Menu.Item key="report4">分析文档</Menu.Item>
+        </SubMenu>
+        <SubMenu key="baike" icon={<BulbOutlined />} title="黑产百科">
+            {new Array(4).fill(null).map((_, index) => {
+                const key = index + 1;
+                return <Menu.Item key={`baike${key}`}>{`百科 ${key}`}</Menu.Item>;
+            })}
+        </SubMenu>
+        {/* ================ */}
         <Menu.Item key="0" icon={<PieChartOutlined />}>option 0</Menu.Item>
         <SubMenu key="sub1" icon={<UserOutlined />} title="subnav 1">
-            {new Array(3).fill(null).map((_, index) => {
+            {new Array(4).fill(null).map((_, index) => {
                 const key = index + 1;
                 return <Menu.Item key={key}>{`option ${key}`}</Menu.Item>;
             })}
@@ -163,6 +186,17 @@ const MenuComponent2 = (
 export default observer((props) => {
     // const { children } = props;
     const [collapsed, setCollapsed] = useState(false);
+
+    console.log('====', collapsed);
+    const HeaderLogo2 = (
+        <div className={collapsed ? "logo2-collapsed" : "logo2"}>
+            <a href="/">
+                <img src="/logo4.svg" alt="logo" width={40} />
+                {/* <h1>生活助手</h1> */}
+                <h1>情报平台天鹰</h1>
+            </a>
+        </div>
+    );
 
     return (
         <>
@@ -232,7 +266,7 @@ export default observer((props) => {
                     </Header>
                     <Content style={{ margin: '0 16px' }}>
                         { BreadcrumbComponent }
-                        <div className="site-layout-backgroud" style={{ padding: 24, minHeight: 100 }}>
+                        <div className="site-layout-backgroud" style={{ padding: 24, minHeight: 520 }}>
                             Content: Bill is a cat.
                         </div>
                     </Content>

@@ -1,0 +1,82 @@
+.site-layout-content {
+  min-height: 100px;
+  padding: 24px;
+  background: #fff;
+}
+
+.logo {
+  float: left;
+  width: 120px;
+  height: 31px;
+  /* margin: 16px 24px 16px 0; */
+  /* background-color: rgba(255, 255, 255, 0.3); */
+  /* background: url('./logo.png') no-repeat; */
+  /* background-size: auto 32px; */
+}
+
+.logo2 {
+  height: 35px;
+  margin: 16px;
+  /* background-color: rgba(255, 255, 255, 0.3); */
+}
+/* collapsed */
+.logo2-collapsed {
+  height: 35px;
+  margin: 16px;
+  text-align: center;
+}
+.logo2-collapsed h1 {
+  display: none;
+}
+
+.logo h1 {
+  display: inline-block;
+  margin: 0 0 0 12px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 18px;
+  vertical-align: middle;
+}
+
+.logo2 h1 {
+  display: inline-block;
+  /* display: none; */
+  margin: 0 0 0 6px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 20px;
+  vertical-align: middle;
+}
+
+.header-right {
+  float: right;
+}
+
+.header-right2 {
+  float: right;
+}
+
+.header-right-icon {
+  margin-right: 16px;
+  color: #fff;
+}
+
+.header-right-icon2 {
+  margin-right: 16px;
+  color: #1890ff;
+}
+
+.site-layout .site-layout-backgroud {
+  background: #fff;
+}
+
+/* .ant-menu-sub.ant-menu-inline > .ant-menu-item, .ant-menu-sub.ant-menu-inline > .ant-menu-submenu > .ant-menu-submenu-title {
+  height: 35px;
+  line-height: 35px;
+  margin: 0 auto;
+}
+
+.ant-menu-vertical > .ant-menu-item, .ant-menu-vertical-left > .ant-menu-item, .ant-menu-vertical-right > .ant-menu-item, .ant-menu-inline > .ant-menu-item, .ant-menu-vertical > .ant-menu-submenu > .ant-menu-submenu-title, .ant-menu-vertical-left > .ant-menu-submenu > .ant-menu-submenu-title, .ant-menu-vertical-right > .ant-menu-submenu > .ant-menu-submenu-title, .ant-menu-inline > .ant-menu-submenu > .ant-menu-submenu-title {
+  height: 35px;
+  line-height: 35px;
+} */

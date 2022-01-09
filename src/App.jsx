@@ -11,7 +11,8 @@ import { BrowserRouter, Switch, Route, Link,
 
 import AppPage from './AppPage';
 import LayoutFull from './layout/full';
-import LayoutBase from './layout/base';
+// import BaseLayout from './layout/BaseLayout';
+import ProLayout from './layout/ProLayout';
 import './styles/App.css';
 
 const NavComponent = () => (
@@ -28,14 +29,14 @@ const NavComponent = () => (
 
 export default function App() {
     return <ConfigProvider locale={zhCN}>
-        <LayoutBase />
+        <ProLayout />
     </ConfigProvider>;
 }
 
 export function App2() {
     return (
         <ConfigProvider locale={zhCN}>
-            <LayoutBase />
+            {/* <LayoutBase /> */}
             <BrowserRouter>
                 <NavComponent />
                 {/* 通过 Switch 查看它的子路由 Route，并渲染出 与当前 URL 匹配的第一个子路由 */}

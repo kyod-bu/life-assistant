@@ -14,21 +14,20 @@
     /* background-size: auto 32px; */
 }
 
-/* ant-layout-sider ant-layout-sider-dark ant-layout-sider-has-trigger */
-/* ant-menu ant-menu-root ant-menu-vertical ant-menu-dark ant-menu-inline-collapsed */
-/* #components-layout-demo-side */
 .logo2 {
-    float: left;
-    height: 32px;
+    height: 35px;
     margin: 16px;
     /* background-color: rgba(255, 255, 255, 0.3); */
 }
-
-/* .logo2 {
-    float: left;
-    height: 32px;
+/* collapsed */
+.logo2-collapsed {
+    height: 35px;
     margin: 16px;
-} */
+    text-align: center;
+}
+.logo2-collapsed h1 {
+    display: none;
+}
 
 .logo h1 {
     display: inline-block;
@@ -41,10 +40,11 @@
 
 .logo2 h1 {
     display: inline-block;
-    margin: 0 0 0 12px;
+    /* display: none; */
+    margin: 0 0 0 6px;
     color: #fff;
     font-weight: 600;
-    font-size: 18px;
+    font-size: 20px;
     vertical-align: middle;
 }
 
@@ -68,4 +68,15 @@
 
 .site-layout .site-layout-backgroud {
     background: #fff;
+}
+
+.ant-menu-sub.ant-menu-inline > .ant-menu-item, .ant-menu-sub.ant-menu-inline > .ant-menu-submenu > .ant-menu-submenu-title {
+    height: 35px;
+    line-height: 35px;
+    margin: 0 auto;
+}
+
+.ant-menu-vertical > .ant-menu-item, .ant-menu-vertical-left > .ant-menu-item, .ant-menu-vertical-right > .ant-menu-item, .ant-menu-inline > .ant-menu-item, .ant-menu-vertical > .ant-menu-submenu > .ant-menu-submenu-title, .ant-menu-vertical-left > .ant-menu-submenu > .ant-menu-submenu-title, .ant-menu-vertical-right > .ant-menu-submenu > .ant-menu-submenu-title, .ant-menu-inline > .ant-menu-submenu > .ant-menu-submenu-title {
+    height: 35px;
+    line-height: 35px;
 }
